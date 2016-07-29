@@ -13,6 +13,7 @@
 """
 
 
+import argparse
 from datetime import datetime
 import getpass
 import os
@@ -120,8 +121,9 @@ def get_all_gist_additions():
 
 def auth(username=None, password=None):
     global USER, PASS
-    if not (username and password):
+    if not username:
         username = input("GitHub Username: ")
+    if not password:
         password = getpass.getpass("GitHub Password: ")
     USER = username
     PASS = password
@@ -137,8 +139,11 @@ def auth(username=None, password=None):
 
 if __name__ == "__main__":
     print(__doc__)
-
-    auth()
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument("-u", "--username", help="Account username")
+    argparser.add_argument("-p", "--password", help="Account password (unsecure)")
+    args = argparser.parse_args()
+    auth(args.username, args.password)
 
     print()
     repo_adds = get_all_repo_additions()
