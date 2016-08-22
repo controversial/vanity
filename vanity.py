@@ -137,7 +137,7 @@ def auth(username=None, password=None):
         print("- Success!")
 
 
-if __name__ == "__main__":
+def main():
     print(__doc__)
     argparser = argparse.ArgumentParser()
     argparser.add_argument("-u", "--username", help="Account username")
@@ -178,3 +178,7 @@ if __name__ == "__main__":
             sorted(gist_adds.items(), key=lambda x: x[1], reverse=True)
         )
     ][:10]))
+    
+
+if __name__ == "__main__":
+	main()
